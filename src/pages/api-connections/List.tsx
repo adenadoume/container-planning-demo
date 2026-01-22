@@ -79,9 +79,9 @@ export const ApiConnectionsList: React.FC = () => {
   ];
 
   const erpOptions = [
-    { value: "softone", label: "SoftOne ERP", icon: "💼" },
-    { value: "epsilonnet", label: "Epsilon Net", icon: "📊" },
-    { value: "psychometric", label: "Psychometric Tests", icon: "🧠" },
+    { value: "softone", label: "SoftOne ERP", icon: "💼", subtitle: "Complete business management" },
+    { value: "epsilonnet", label: "Epsilon Net", icon: "📊", subtitle: "Advanced accounting & ERP" },
+    { value: "ison", label: "ISON PLATFORM", icon: "🔧", subtitle: "Psychometric Tests - Employee evaluation" },
   ];
 
   const dataOptions = [
@@ -246,14 +246,38 @@ export const ApiConnectionsList: React.FC = () => {
     <>
       <style>{`
         .ant-card {
-          background: #1f2937 !important;
+          background: #111827 !important;
           border: 1px solid #374151 !important;
-          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+          border-radius: 8px !important;
           transition: all 0.3s ease !important;
         }
-        .ant-card:hover {
-          box-shadow: 0 20px 35px -5px rgba(59, 130, 246, 0.2), 0 10px 15px -5px rgba(16, 185, 129, 0.1) !important;
-          transform: translateY(-2px) !important;
+        .api-card-blue {
+          box-shadow: 0 4px 14px 0 rgba(96, 165, 250, 0.39) !important;
+        }
+        .api-card-blue:hover {
+          transform: translateY(-4px) !important;
+          box-shadow: 0 8px 20px 0 rgba(96, 165, 250, 0.5) !important;
+        }
+        .api-card-green {
+          box-shadow: 0 4px 14px 0 rgba(52, 211, 153, 0.39) !important;
+        }
+        .api-card-green:hover {
+          transform: translateY(-4px) !important;
+          box-shadow: 0 8px 20px 0 rgba(52, 211, 153, 0.5) !important;
+        }
+        .api-card-purple {
+          box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.39) !important;
+        }
+        .api-card-purple:hover {
+          transform: translateY(-4px) !important;
+          box-shadow: 0 8px 20px 0 rgba(139, 92, 246, 0.5) !important;
+        }
+        .api-card-cyan {
+          box-shadow: 0 4px 14px 0 rgba(34, 211, 238, 0.39) !important;
+        }
+        .api-card-cyan:hover {
+          transform: translateY(-4px) !important;
+          box-shadow: 0 8px 20px 0 rgba(34, 211, 238, 0.5) !important;
         }
         .ant-card-head {
           border-bottom: 1px solid #374151 !important;
@@ -341,8 +365,10 @@ export const ApiConnectionsList: React.FC = () => {
           background: #374151 !important;
         }
         .ant-btn-primary {
-          font-size: 16px !important;
-          font-weight: 600 !important;
+          font-size: 18px !important;
+          font-weight: 700 !important;
+          height: auto !important;
+          padding: 12px 24px !important;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
           transition: all 0.3s ease !important;
         }
@@ -390,21 +416,23 @@ export const ApiConnectionsList: React.FC = () => {
         </div>
 
         <Space direction="vertical" size="large" style={{ width: "100%" }}>
-          <Row gutter={[16, 16]}>
-            {/* ERP Connection Section */}
+          <Row gutter={[24, 24]}>
+            {/* API Connection Section */}
             <Col xs={24} lg={8}>
               <Card
+                className="api-card-blue"
+                hoverable
                 title={
                   <span>
                     <CloudSyncOutlined style={{ marginRight: "8px" }} />
-                    Connect to ERP System
+                    API Connection
                   </span>
                 }
               >
                 <Space direction="vertical" size="middle" style={{ width: "100%" }}>
                   <div>
-                    <Text style={{ color: "#d1d5db", display: "block", marginBottom: "8px" }}>
-                      Select ERP Platform:
+                    <Text style={{ color: "white", display: "block", marginBottom: "8px", fontSize: "18px", fontWeight: "600" }}>
+                      Select Platform:
                     </Text>
                     <Select
                       placeholder="Choose ERP system"
@@ -418,8 +446,15 @@ export const ApiConnectionsList: React.FC = () => {
                     >
                       {erpOptions.map((option) => (
                         <Option key={option.value} value={option.value}>
-                          <span style={{ marginRight: "8px" }}>{option.icon}</span>
-                          {option.label}
+                          <div>
+                            <span style={{ marginRight: "8px" }}>{option.icon}</span>
+                            <span style={{ fontWeight: 600 }}>{option.label}</span>
+                            {option.subtitle && (
+                              <div style={{ fontSize: "12px", color: "#9ca3af", marginTop: "2px", marginLeft: "28px" }}>
+                                {option.subtitle}
+                              </div>
+                            )}
+                          </div>
                         </Option>
                       ))}
                     </Select>
@@ -438,7 +473,7 @@ export const ApiConnectionsList: React.FC = () => {
                       borderColor: "#3b82f6",
                     }}
                   >
-                    {connectionStatus === "connecting" ? "Connecting..." : "Connect to ERP"}
+                    {connectionStatus === "connecting" ? "Connecting..." : "Connect to API"}
                   </Button>
 
                   {connectionStatus !== "idle" && (
@@ -457,12 +492,12 @@ export const ApiConnectionsList: React.FC = () => {
 
                   <div>
                     <Paragraph style={{ color: "#9ca3af", fontSize: "14px", margin: 0 }}>
-                      <strong>Supported ERP Systems:</strong>
+                      <strong>Supported Platforms:</strong>
                     </Paragraph>
-                    <ul style={{ color: "#9ca3af", fontSize: "13px", marginTop: "8px" }}>
+                    <ul style={{ color: "#9ca3af", fontSize: "14px", marginTop: "8px" }}>
                       <li>SoftOne ERP - Complete business management</li>
                       <li>Epsilon Net - Advanced accounting & ERP</li>
-                      <li>Psychometric Tests - Employee assessment tools</li>
+                      <li>ISON PLATFORM - Psychometric Tests for employee evaluation</li>
                     </ul>
                   </div>
                 </Space>
@@ -472,6 +507,8 @@ export const ApiConnectionsList: React.FC = () => {
             {/* Data Fetch Section */}
             <Col xs={24} lg={8}>
               <Card
+                className="api-card-green"
+                hoverable
                 title={
                   <span>
                     <DatabaseOutlined style={{ marginRight: "8px" }} />
@@ -481,7 +518,7 @@ export const ApiConnectionsList: React.FC = () => {
               >
                 <Space direction="vertical" size="middle" style={{ width: "100%" }}>
                   <div>
-                    <Text style={{ color: "#d1d5db", display: "block", marginBottom: "8px" }}>
+                    <Text style={{ color: "white", display: "block", marginBottom: "8px", fontSize: "18px", fontWeight: "600" }}>
                       Select Data Source:
                     </Text>
                     <Select
@@ -549,6 +586,8 @@ export const ApiConnectionsList: React.FC = () => {
             {/* Send Email Section */}
             <Col xs={24} lg={8}>
               <Card
+                className="api-card-purple"
+                hoverable
                 title={
                   <span>
                     <MailOutlined style={{ marginRight: "8px" }} />
@@ -558,7 +597,7 @@ export const ApiConnectionsList: React.FC = () => {
               >
                 <Space direction="vertical" size="middle" style={{ width: "100%" }}>
                   <div>
-                    <Text style={{ color: "#d1d5db", display: "block", marginBottom: "8px" }}>
+                    <Text style={{ color: "white", display: "block", marginBottom: "8px", fontSize: "18px", fontWeight: "600" }}>
                       Select Email Type:
                     </Text>
                     <Select
@@ -627,6 +666,8 @@ export const ApiConnectionsList: React.FC = () => {
 
           {/* AI Chatbot Section */}
           <Card
+            className="api-card-cyan"
+            hoverable
             title={
               <span>
                 <RobotOutlined style={{ marginRight: "8px" }} />
