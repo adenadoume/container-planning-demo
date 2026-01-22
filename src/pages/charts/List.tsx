@@ -73,7 +73,7 @@ export const ChartsList: React.FC = () => {
       // Fetch container items data
       const { data: items, error: itemsError } = await supabase
         .from("container_items")
-        .select("container_name, cbm, status, reference_code");
+        .select("container_name, cbm, status, reference_code, product_cost, freight_cost, client");
 
       if (itemsError) {
         console.error("Error fetching container items:", itemsError);
@@ -86,7 +86,8 @@ export const ChartsList: React.FC = () => {
       items?.forEach((item) => {
         const container = item.container_name || "Unknown";
         const currentCBM = containerMap.get(container) || 0;
-        containerMap.set(container, currentCBM + (parseFloat(item.cbm) || 0));
+        const itemCBM = parseFloat(item.cbm?.toString() || "0");
+        containerMap.set(container, currentCBM + itemCBM);
       });
 
       const containerChartData = Array.from(containerMap.entries()).map(
@@ -130,10 +131,10 @@ export const ChartsList: React.FC = () => {
 
       // Process data for Cost Analysis Area Chart
       const costAnalysisData = Array.from(containerMap.entries()).map(
-        ([name, cbm]) => {
+        ([name]) => {
           const containerItems = items?.filter(item => item.container_name === name) || [];
-          const totalProductCost = containerItems.reduce((sum, item) => sum + (parseFloat(item.product_cost || "0")), 0);
-          const totalFreightCost = containerItems.reduce((sum, item) => sum + (parseFloat(item.freight_cost || "0")), 0);
+          const totalProductCost = containerItems.reduce((sum, item) => sum + (parseFloat(item.product_cost?.toString() || "0")), 0);
+          const totalFreightCost = containerItems.reduce((sum, item) => sum + (parseFloat(item.freight_cost?.toString() || "0")), 0);
           return {
             container: name,
             productCost: parseFloat(totalProductCost.toFixed(2)),
@@ -410,10 +411,8 @@ export const ChartsList: React.FC = () => {
                       endAngle={0}
                     >
                       <RadialBar
-                        minAngle={15}
                         label={{ position: 'insideStart', fill: '#fff', fontSize: 14 }}
                         background
-                        clockWise
                         dataKey="value"
                       />
                       <Legend 
