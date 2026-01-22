@@ -182,14 +182,45 @@ export const ChartsList: React.FC = () => {
     <>
       <style>{`
         .ant-card {
-          background: #1f2937 !important;
+          background: #111827 !important;
           border: 1px solid #374151 !important;
-          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+          border-radius: 8px !important;
           transition: all 0.3s ease !important;
         }
-        .ant-card:hover {
-          box-shadow: 0 20px 35px -5px rgba(59, 130, 246, 0.2), 0 10px 15px -5px rgba(16, 185, 129, 0.1) !important;
-          transform: translateY(-2px) !important;
+        .chart-card-blue {
+          box-shadow: 0 4px 14px 0 rgba(96, 165, 250, 0.39) !important;
+        }
+        .chart-card-blue:hover {
+          transform: translateY(-4px) !important;
+          box-shadow: 0 8px 20px 0 rgba(96, 165, 250, 0.5) !important;
+        }
+        .chart-card-green {
+          box-shadow: 0 4px 14px 0 rgba(52, 211, 153, 0.39) !important;
+        }
+        .chart-card-green:hover {
+          transform: translateY(-4px) !important;
+          box-shadow: 0 8px 20px 0 rgba(52, 211, 153, 0.5) !important;
+        }
+        .chart-card-orange {
+          box-shadow: 0 4px 14px 0 rgba(251, 146, 60, 0.39) !important;
+        }
+        .chart-card-orange:hover {
+          transform: translateY(-4px) !important;
+          box-shadow: 0 8px 20px 0 rgba(251, 146, 60, 0.5) !important;
+        }
+        .chart-card-purple {
+          box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.39) !important;
+        }
+        .chart-card-purple:hover {
+          transform: translateY(-4px) !important;
+          box-shadow: 0 8px 20px 0 rgba(139, 92, 246, 0.5) !important;
+        }
+        .chart-card-cyan {
+          box-shadow: 0 4px 14px 0 rgba(34, 211, 238, 0.39) !important;
+        }
+        .chart-card-cyan:hover {
+          transform: translateY(-4px) !important;
+          box-shadow: 0 8px 20px 0 rgba(34, 211, 238, 0.5) !important;
         }
         .ant-card-head {
           border-bottom: 1px solid #374151 !important;
@@ -276,6 +307,8 @@ export const ChartsList: React.FC = () => {
           <Space direction="vertical" size="large" style={{ width: "100%" }}>
             {/* Container CBM Bar Chart */}
             <Card
+              className="chart-card-blue"
+              hoverable
               title={
                 <span>
                   <BarChartOutlined style={{ marginRight: "8px" }} />
@@ -303,10 +336,12 @@ export const ChartsList: React.FC = () => {
               </ResponsiveContainer>
             </Card>
 
-            <Row gutter={[16, 16]}>
+            <Row gutter={[24, 24]}>
               {/* Status Distribution Pie Chart */}
               <Col xs={24} lg={12}>
                 <Card
+                  className="chart-card-green"
+                  hoverable
                   title={
                     <span>
                       <PieChartOutlined style={{ marginRight: "8px" }} />
@@ -352,6 +387,8 @@ export const ChartsList: React.FC = () => {
               {/* Top Suppliers Line Chart */}
               <Col xs={24} lg={12}>
                 <Card
+                  className="chart-card-orange"
+                  hoverable
                   title={
                     <span>
                       <LineChartOutlined style={{ marginRight: "8px" }} />
@@ -390,6 +427,8 @@ export const ChartsList: React.FC = () => {
 
             {/* Cost Analysis Area Chart */}
             <Card
+              className="chart-card-purple"
+              hoverable
               title={
                 <span>
                   <LineChartOutlined style={{ marginRight: "8px" }} />
@@ -428,10 +467,12 @@ export const ChartsList: React.FC = () => {
               </ResponsiveContainer>
             </Card>
 
-            <Row gutter={[16, 16]}>
+            <Row gutter={[24, 24]}>
               {/* Client Distribution Radial Chart */}
               <Col xs={24} lg={12}>
                 <Card
+                  className="chart-card-cyan"
+                  hoverable
                   title={
                     <span>
                       <PieChartOutlined style={{ marginRight: "8px" }} />
@@ -478,6 +519,8 @@ export const ChartsList: React.FC = () => {
               {/* Combined Chart */}
               <Col xs={24} lg={12}>
                 <Card
+                  className="chart-card-blue"
+                  hoverable
                   title={
                     <span>
                       <BarChartOutlined style={{ marginRight: "8px" }} />
@@ -513,8 +556,8 @@ export const ChartsList: React.FC = () => {
             </Row>
 
             {/* Summary Statistics Card */}
-            <Card title="Summary Statistics">
-              <Row gutter={[16, 16]}>
+            <Card className="chart-card-green" hoverable title="Summary Statistics">
+              <Row gutter={[24, 24]}>
                 <Col xs={24} sm={12} md={6}>
                   <div style={{ textAlign: "center", padding: "20px" }}>
                     <Title level={2} style={{ color: "#3b82f6", margin: 0 }}>
