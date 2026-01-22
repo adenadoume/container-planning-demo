@@ -24,6 +24,12 @@ import { ArrivalsList } from "./pages/arrivals/List";
 // ENTYPO PARALAVIS Pages
 import { EntypoParaliavisList } from "./pages/entypo-paralavis/List";
 
+// Charts Pages
+import { ChartsList } from "./pages/charts/List";
+
+// API Connections Pages
+import { ApiConnectionsList } from "./pages/api-connections/List";
+
 // Custom Layout
 import { Layout } from "./components/Layout";
 
@@ -82,6 +88,20 @@ function App() {
               list: "/entypo-paralavis",
               meta: {
                 label: "ENTYPO PARALAVIS",
+              },
+            },
+            {
+              name: "charts",
+              list: "/charts",
+              meta: {
+                label: "Charts",
+              },
+            },
+            {
+              name: "api_connections",
+              list: "/api-connections",
+              meta: {
+                label: "API Connections",
               },
             },
           ]}
@@ -161,6 +181,16 @@ function App() {
             {/* ENTYPO PARALAVIS - No sidebar, just dropdown */}
             <Route path="/entypo-paralavis">
               <Route index element={<EntypoParaliavisList />} />
+            </Route>
+
+            {/* Charts - No sidebar, just dropdown */}
+            <Route path="/charts">
+              <Route index element={<ChartsList />} />
+            </Route>
+
+            {/* API Connections - No sidebar, just dropdown */}
+            <Route path="/api-connections">
+              <Route index element={<ApiConnectionsList />} />
             </Route>
 
             {/* Default Route */}

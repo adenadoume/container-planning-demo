@@ -36,7 +36,9 @@ export const EntypoParaliavisList: React.FC = () => {
     "DEMO-005 SOUTH",
     "SUPPLIER LIST",
     "ARRIVALS",
-    "ENTYPO PARALAVIS"
+    "ENTYPO PARALAVIS",
+    "CHARTS",
+    "API CONNECTIONS"
   ];
 
   const handleViewChange = (value: string) => {
@@ -47,6 +49,10 @@ export const EntypoParaliavisList: React.FC = () => {
       navigate("/arrivals");
     } else if (value === "ENTYPO PARALAVIS") {
       navigate("/entypo-paralavis");
+    } else if (value === "CHARTS") {
+      navigate("/charts");
+    } else if (value === "API CONNECTIONS") {
+      navigate("/api-connections");
     } else {
       const containerMap: Record<string, string> = {
         'DEMO-001 SOUTH': 'DEMO-001',

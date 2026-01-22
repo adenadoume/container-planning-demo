@@ -19,7 +19,7 @@ export const SuppliersList: React.FC = () => {
   const [editingRecordId, setEditingRecordId] = useState<number | null>(null);
   const [modalMode, setModalMode] = useState<"edit" | "create">("edit");
 
-  const views = ["DEMO-001 SOUTH", "DEMO-002 NORTH", "DEMO-003 SOUTH", "DEMO-004 SOUTH", "DEMO-005 SOUTH", "SUPPLIER LIST", "ARRIVALS", "ENTYPO PARALAVIS"];
+  const views = ["DEMO-001 SOUTH", "DEMO-002 NORTH", "DEMO-003 SOUTH", "DEMO-004 SOUTH", "DEMO-005 SOUTH", "SUPPLIER LIST", "ARRIVALS", "ENTYPO PARALAVIS", "CHARTS", "API CONNECTIONS"];
 
   // Redirect when a different view is selected
   useEffect(() => {
@@ -27,6 +27,10 @@ export const SuppliersList: React.FC = () => {
       navigate("/arrivals");
     } else if (selectedView === "ENTYPO PARALAVIS") {
       navigate("/entypo-paralavis");
+    } else if (selectedView === "CHARTS") {
+      navigate("/charts");
+    } else if (selectedView === "API CONNECTIONS") {
+      navigate("/api-connections");
     } else if (selectedView !== "SUPPLIER LIST") {
       navigate("/container-items");
     }
@@ -37,7 +41,7 @@ export const SuppliersList: React.FC = () => {
     sorters: {
       initial: [
         {
-          field: "reference_number",
+          field: "reference_code",
           order: "asc",
         },
       ],
