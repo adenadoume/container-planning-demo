@@ -81,7 +81,7 @@ export const ApiConnectionsList: React.FC = () => {
   const erpOptions = [
     { value: "softone", label: "SoftOne ERP", icon: "💼" },
     { value: "epsilonnet", label: "Epsilon Net", icon: "📊" },
-    { value: "ison", label: "ISON Platform", icon: "🔧" },
+    { value: "psychometric", label: "Psychometric Tests", icon: "🧠" },
   ];
 
   const dataOptions = [
@@ -248,6 +248,12 @@ export const ApiConnectionsList: React.FC = () => {
         .ant-card {
           background: #1f2937 !important;
           border: 1px solid #374151 !important;
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+          transition: all 0.3s ease !important;
+        }
+        .ant-card:hover {
+          box-shadow: 0 20px 35px -5px rgba(59, 130, 246, 0.2), 0 10px 15px -5px rgba(16, 185, 129, 0.1) !important;
+          transform: translateY(-2px) !important;
         }
         .ant-card-head {
           border-bottom: 1px solid #374151 !important;
@@ -255,8 +261,8 @@ export const ApiConnectionsList: React.FC = () => {
         }
         .ant-card-head-title {
           color: white !important;
-          font-size: 18px !important;
-          font-weight: bold !important;
+          font-size: 20px !important;
+          font-weight: 700 !important;
         }
         .chat-container {
           max-height: 500px;
@@ -265,11 +271,13 @@ export const ApiConnectionsList: React.FC = () => {
           background: #111827;
           border-radius: 8px;
           margin-bottom: 16px;
+          box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.3);
         }
         .chat-message {
           margin-bottom: 16px;
           display: flex;
           align-items: flex-start;
+          animation: fadeIn 0.3s ease-in;
         }
         .chat-message.user {
           flex-direction: row-reverse;
@@ -279,6 +287,7 @@ export const ApiConnectionsList: React.FC = () => {
           padding: 12px 16px;
           border-radius: 12px;
           word-wrap: break-word;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
         .chat-bubble.user {
           background: #3b82f6;
@@ -289,15 +298,67 @@ export const ApiConnectionsList: React.FC = () => {
           background: #374151;
           color: #d1d5db;
         }
-        .ant-select-selector,
+        .ant-select-selector {
+          background: #374151 !important;
+          border-color: #4b5563 !important;
+          color: #ffffff !important;
+          font-size: 16px !important;
+        }
+        .ant-select-selection-item {
+          color: #ffffff !important;
+        }
+        .ant-select-selection-placeholder {
+          color: #9ca3af !important;
+        }
         .ant-input,
         .ant-input-textarea textarea {
           background: #374151 !important;
           border-color: #4b5563 !important;
-          color: #d1d5db !important;
+          color: #ffffff !important;
+          font-size: 16px !important;
+        }
+        .ant-input::placeholder,
+        .ant-input-textarea textarea::placeholder {
+          color: #9ca3af !important;
         }
         .ant-select-arrow {
           color: #d1d5db !important;
+        }
+        .ant-select-dropdown {
+          background: #1f2937 !important;
+          border: 1px solid #374151 !important;
+        }
+        .ant-select-item {
+          color: #d1d5db !important;
+          background: #1f2937 !important;
+        }
+        .ant-select-item-option-selected {
+          background: #374151 !important;
+          color: #ffffff !important;
+          font-weight: 600 !important;
+        }
+        .ant-select-item-option-active {
+          background: #374151 !important;
+        }
+        .ant-btn-primary {
+          font-size: 16px !important;
+          font-weight: 600 !important;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+          transition: all 0.3s ease !important;
+        }
+        .ant-btn-primary:hover {
+          transform: translateY(-2px) !important;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1) !important;
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
       `}</style>
       <div style={{ background: "#0f172a", minHeight: "100vh", padding: "24px" }}>
@@ -401,7 +462,7 @@ export const ApiConnectionsList: React.FC = () => {
                     <ul style={{ color: "#9ca3af", fontSize: "13px", marginTop: "8px" }}>
                       <li>SoftOne ERP - Complete business management</li>
                       <li>Epsilon Net - Advanced accounting & ERP</li>
-                      <li>ISON Platform - Industrial operations management</li>
+                      <li>Psychometric Tests - Employee assessment tools</li>
                     </ul>
                   </div>
                 </Space>

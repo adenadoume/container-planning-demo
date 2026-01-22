@@ -184,6 +184,12 @@ export const ChartsList: React.FC = () => {
         .ant-card {
           background: #1f2937 !important;
           border: 1px solid #374151 !important;
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+          transition: all 0.3s ease !important;
+        }
+        .ant-card:hover {
+          box-shadow: 0 20px 35px -5px rgba(59, 130, 246, 0.2), 0 10px 15px -5px rgba(16, 185, 129, 0.1) !important;
+          transform: translateY(-2px) !important;
         }
         .ant-card-head {
           border-bottom: 1px solid #374151 !important;
@@ -191,14 +197,47 @@ export const ChartsList: React.FC = () => {
         }
         .ant-card-head-title {
           color: white !important;
-          font-size: 18px !important;
-          font-weight: bold !important;
+          font-size: 20px !important;
+          font-weight: 700 !important;
         }
         .recharts-text {
           fill: #d1d5db !important;
+          font-size: 14px !important;
         }
         .recharts-legend-item-text {
           color: #d1d5db !important;
+        }
+        .ant-select-selector {
+          background: #374151 !important;
+          border-color: #4b5563 !important;
+          color: #ffffff !important;
+          font-size: 18px !important;
+        }
+        .ant-select-selection-item {
+          color: #ffffff !important;
+        }
+        .ant-select-selection-placeholder {
+          color: #9ca3af !important;
+        }
+        .ant-select-arrow {
+          color: #d1d5db !important;
+        }
+        .ant-select-dropdown {
+          background: #1f2937 !important;
+          border: 1px solid #374151 !important;
+        }
+        .ant-select-item {
+          color: #d1d5db !important;
+          background: #1f2937 !important;
+          font-size: 16px !important;
+        }
+        .ant-select-item-option-selected {
+          background: #374151 !important;
+          color: #ffffff !important;
+          font-weight: 600 !important;
+        }
+        .ant-select-item-option-active {
+          background: #374151 !important;
         }
       `}</style>
       <div style={{ background: "#0f172a", minHeight: "100vh", padding: "24px" }}>
