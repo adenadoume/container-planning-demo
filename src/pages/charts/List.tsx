@@ -14,6 +14,11 @@ import {
   Pie,
   LineChart,
   Line,
+  AreaChart,
+  Area,
+  RadialBarChart,
+  RadialBar,
+  ComposedChart,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -32,6 +37,8 @@ export const ChartsList: React.FC = () => {
   const [containerData, setContainerData] = useState<any[]>([]);
   const [statusData, setStatusData] = useState<any[]>([]);
   const [supplierData, setSupplierData] = useState<any[]>([]);
+  const [costData, setCostData] = useState<any[]>([]);
+  const [clientData, setClientData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   const views = [
@@ -39,10 +46,8 @@ export const ChartsList: React.FC = () => {
     "DEMO-002 NORTH",
     "DEMO-003 SOUTH",
     "DEMO-004 SOUTH",
-    "DEMO-005 SOUTH",
     "SUPPLIER LIST",
     "ARRIVALS",
-    "ENTYPO PARALAVIS",
     "CHARTS",
     "API CONNECTIONS",
   ];
@@ -53,8 +58,6 @@ export const ChartsList: React.FC = () => {
       navigate("/suppliers");
     } else if (selectedView === "ARRIVALS") {
       navigate("/arrivals");
-    } else if (selectedView === "ENTYPO PARALAVIS") {
-      navigate("/entypo-paralavis");
     } else if (selectedView === "API CONNECTIONS") {
       navigate("/api-connections");
     } else if (selectedView !== "CHARTS") {
@@ -124,6 +127,38 @@ export const ChartsList: React.FC = () => {
           items: count,
         }));
       setSupplierData(supplierChartData);
+
+      // Process data for Cost Analysis Area Chart
+      const costAnalysisData = Array.from(containerMap.entries()).map(
+        ([name, cbm]) => {
+          const containerItems = items?.filter(item => item.container_name === name) || [];
+          const totalProductCost = containerItems.reduce((sum, item) => sum + (parseFloat(item.product_cost || "0")), 0);
+          const totalFreightCost = containerItems.reduce((sum, item) => sum + (parseFloat(item.freight_cost || "0")), 0);
+          return {
+            container: name,
+            productCost: parseFloat(totalProductCost.toFixed(2)),
+            freightCost: parseFloat(totalFreightCost.toFixed(2)),
+          };
+        }
+      );
+      setCostData(costAnalysisData);
+
+      // Process data for Client Distribution Radial Chart
+      const clientMap = new Map();
+      items?.forEach((item) => {
+        const client = item.client || "Unknown";
+        clientMap.set(client, (clientMap.get(client) || 0) + 1);
+      });
+
+      const clientChartData = Array.from(clientMap.entries())
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5)
+        .map(([name, value], index) => ({
+          name,
+          value,
+          fill: COLORS[index % COLORS.length],
+        }));
+      setClientData(clientChartData);
 
       setLoading(false);
     };
@@ -215,10 +250,12 @@ export const ChartsList: React.FC = () => {
                   <YAxis stroke="#d1d5db" />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "#1f2937",
-                      border: "1px solid #374151",
-                      color: "#d1d5db",
+                      backgroundColor: "#ffffff",
+                      border: "1px solid #d1d5db",
+                      borderRadius: "4px",
                     }}
+                    labelStyle={{ color: "#111827", fontWeight: "bold" }}
+                    itemStyle={{ color: "#374151" }}
                   />
                   <Legend />
                   <Bar dataKey="cbm" fill="#3b82f6" name="Total CBM" />
@@ -260,10 +297,12 @@ export const ChartsList: React.FC = () => {
                       </Pie>
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: "#1f2937",
-                          border: "1px solid #374151",
-                          color: "#d1d5db",
+                          backgroundColor: "#ffffff",
+                          border: "1px solid #d1d5db",
+                          borderRadius: "4px",
                         }}
+                        labelStyle={{ color: "#111827", fontWeight: "bold" }}
+                        itemStyle={{ color: "#374151" }}
                       />
                     </PieChart>
                   </ResponsiveContainer>
@@ -287,10 +326,12 @@ export const ChartsList: React.FC = () => {
                       <YAxis stroke="#d1d5db" />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: "#1f2937",
-                          border: "1px solid #374151",
-                          color: "#d1d5db",
+                          backgroundColor: "#ffffff",
+                          border: "1px solid #d1d5db",
+                          borderRadius: "4px",
                         }}
+                        labelStyle={{ color: "#111827", fontWeight: "bold" }}
+                        itemStyle={{ color: "#374151" }}
                       />
                       <Legend />
                       <Line
@@ -302,6 +343,132 @@ export const ChartsList: React.FC = () => {
                         dot={{ fill: "#10b981", r: 6 }}
                       />
                     </LineChart>
+                  </ResponsiveContainer>
+                </Card>
+              </Col>
+            </Row>
+
+            {/* Cost Analysis Area Chart */}
+            <Card
+              title={
+                <span>
+                  <LineChartOutlined style={{ marginRight: "8px" }} />
+                  Cost Analysis by Container
+                </span>
+              }
+            >
+              <ResponsiveContainer width="100%" height={400}>
+                <AreaChart data={costData}>
+                  <defs>
+                    <linearGradient id="colorProduct" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
+                      <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                    </linearGradient>
+                    <linearGradient id="colorFreight" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
+                      <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                  <XAxis dataKey="container" stroke="#d1d5db" />
+                  <YAxis stroke="#d1d5db" />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "#ffffff",
+                      border: "1px solid #d1d5db",
+                      borderRadius: "4px",
+                    }}
+                    labelStyle={{ color: "#111827", fontWeight: "bold" }}
+                    itemStyle={{ color: "#374151" }}
+                  />
+                  <Legend />
+                  <Area type="monotone" dataKey="productCost" stroke="#3b82f6" fillOpacity={1} fill="url(#colorProduct)" name="Product Cost" />
+                  <Area type="monotone" dataKey="freightCost" stroke="#10b981" fillOpacity={1} fill="url(#colorFreight)" name="Freight Cost" />
+                </AreaChart>
+              </ResponsiveContainer>
+            </Card>
+
+            <Row gutter={[16, 16]}>
+              {/* Client Distribution Radial Chart */}
+              <Col xs={24} lg={12}>
+                <Card
+                  title={
+                    <span>
+                      <PieChartOutlined style={{ marginRight: "8px" }} />
+                      Top 5 Clients
+                    </span>
+                  }
+                >
+                  <ResponsiveContainer width="100%" height={400}>
+                    <RadialBarChart 
+                      cx="50%" 
+                      cy="50%" 
+                      innerRadius="20%" 
+                      outerRadius="90%" 
+                      data={clientData}
+                      startAngle={180} 
+                      endAngle={0}
+                    >
+                      <RadialBar
+                        minAngle={15}
+                        label={{ position: 'insideStart', fill: '#fff', fontSize: 14 }}
+                        background
+                        clockWise
+                        dataKey="value"
+                      />
+                      <Legend 
+                        iconSize={10} 
+                        layout="vertical" 
+                        verticalAlign="middle" 
+                        align="right"
+                        wrapperStyle={{ color: "#d1d5db" }}
+                      />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: "#ffffff",
+                          border: "1px solid #d1d5db",
+                          borderRadius: "4px",
+                        }}
+                        labelStyle={{ color: "#111827", fontWeight: "bold" }}
+                        itemStyle={{ color: "#374151" }}
+                      />
+                    </RadialBarChart>
+                  </ResponsiveContainer>
+                </Card>
+              </Col>
+
+              {/* Combined Chart */}
+              <Col xs={24} lg={12}>
+                <Card
+                  title={
+                    <span>
+                      <BarChartOutlined style={{ marginRight: "8px" }} />
+                      CBM vs Items Count
+                    </span>
+                  }
+                >
+                  <ResponsiveContainer width="100%" height={400}>
+                    <ComposedChart data={containerData.map((item, index) => ({
+                      ...item,
+                      itemCount: statusData.filter((_s, i) => i === index).reduce((sum, s) => sum + s.value, statusData.reduce((sum, s) => sum + s.value, 0) / containerData.length)
+                    }))}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                      <XAxis dataKey="container" stroke="#d1d5db" />
+                      <YAxis yAxisId="left" stroke="#d1d5db" />
+                      <YAxis yAxisId="right" orientation="right" stroke="#d1d5db" />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: "#ffffff",
+                          border: "1px solid #d1d5db",
+                          borderRadius: "4px",
+                        }}
+                        labelStyle={{ color: "#111827", fontWeight: "bold" }}
+                        itemStyle={{ color: "#374151" }}
+                      />
+                      <Legend />
+                      <Bar yAxisId="left" dataKey="cbm" fill="#3b82f6" name="Total CBM" />
+                      <Line yAxisId="right" type="monotone" dataKey="itemCount" stroke="#ef4444" strokeWidth={3} name="Items Count" dot={{ fill: "#ef4444", r: 6 }} />
+                    </ComposedChart>
                   </ResponsiveContainer>
                 </Card>
               </Col>

@@ -9,13 +9,28 @@ INSERT INTO containers (name) VALUES
   ('DEMO-004 SOUTH')
 ON CONFLICT (name) DO NOTHING;
 
--- Insert sample suppliers (fictional data)
+-- Insert sample suppliers (fictional data - 20 entries)
 INSERT INTO suppliers (reference_code, supplier, product, cbm, product_cost, freight_cost, payment, status, production_days, contact_person, email, contact_number, address) VALUES
   ('SUP-001', 'Acme Trading Co.', 'Industrial Components A', 2.5, 1500.00, 200.00, 850.00, 'READY TO SHIP', 15, 'John Smith', 'demo@example.com', '+1-555-0100', '123 Demo Street, Sample City'),
   ('SUP-002', 'Global Supplies Ltd.', 'Electronic Parts B', 1.8, 2200.00, 180.00, 1100.00, 'IN PRODUCTION', 20, 'Jane Doe', 'demo2@example.com', '+1-555-0101', '456 Test Avenue, Demo Town'),
   ('SUP-003', 'Pacific Exports Inc.', 'Furniture Set C', 5.2, 3500.00, 450.00, 1750.00, 'AWAITING SUPPLIER', 25, 'Bob Wilson', 'demo3@example.com', '+1-555-0102', '789 Sample Road, Test City'),
   ('SUP-004', 'Eastern Materials', 'Textile Products D', 3.0, 1800.00, 220.00, 900.00, 'NEED PAYMENT', 12, 'Alice Brown', 'demo4@example.com', '+1-555-0103', '321 Example Blvd, Demo State'),
-  ('SUP-005', 'Summit Industries', 'Metal Parts E', 4.5, 4200.00, 380.00, 2100.00, 'PENDING', 30, 'Charlie Davis', 'demo5@example.com', '+1-555-0104', '654 Mock Lane, Sample County')
+  ('SUP-005', 'Summit Industries', 'Metal Parts E', 4.5, 4200.00, 380.00, 2100.00, 'PENDING', 30, 'Charlie Davis', 'demo5@example.com', '+1-555-0104', '654 Mock Lane, Sample County'),
+  ('SUP-006', 'Northern Trade Corp.', 'Plastic Components', 3.2, 1800.00, 220.00, 900.00, 'READY TO SHIP', 18, 'Mike Johnson', 'demo6@example.com', '+1-555-0105', '111 North Street, Sample City'),
+  ('SUP-007', 'Southern Exports', 'Metal Fittings', 2.1, 1300.00, 150.00, 700.00, 'IN PRODUCTION', 22, 'Sarah Williams', 'demo7@example.com', '+1-555-0106', '222 South Ave, Demo Town'),
+  ('SUP-008', 'Western Materials', 'Wooden Products', 4.0, 2500.00, 300.00, 1250.00, 'AWAITING SUPPLIER', 25, 'Tom Brown', 'demo8@example.com', '+1-555-0107', '333 West Road, Test City'),
+  ('SUP-009', 'Eastern Trading', 'Glass Items', 1.5, 900.00, 120.00, 450.00, 'NEED PAYMENT', 10, 'Lisa Garcia', 'demo9@example.com', '+1-555-0108', '444 East Blvd, Demo State'),
+  ('SUP-010', 'Central Supplies', 'Rubber Parts', 3.8, 2100.00, 250.00, 1050.00, 'PENDING', 28, 'David Martinez', 'demo10@example.com', '+1-555-0109', '555 Central Lane, Sample County'),
+  ('SUP-011', 'Prime Industries', 'Steel Components', 2.7, 1600.00, 190.00, 800.00, 'READY TO SHIP', 16, 'Emma Rodriguez', 'demo11@example.com', '+1-555-0110', '666 Prime Street, Sample City'),
+  ('SUP-012', 'Quality Traders', 'Aluminum Parts', 1.9, 1100.00, 140.00, 550.00, 'IN PRODUCTION', 19, 'James Wilson', 'demo12@example.com', '+1-555-0111', '777 Quality Ave, Demo Town'),
+  ('SUP-013', 'Elite Exports', 'Copper Goods', 3.5, 2000.00, 240.00, 1000.00, 'AWAITING SUPPLIER', 24, 'Olivia Lee', 'demo13@example.com', '+1-555-0112', '888 Elite Road, Test City'),
+  ('SUP-014', 'Premier Materials', 'Bronze Items', 2.3, 1400.00, 170.00, 700.00, 'NEED PAYMENT', 14, 'William Taylor', 'demo14@example.com', '+1-555-0113', '999 Premier Blvd, Demo State'),
+  ('SUP-015', 'Supreme Trading', 'Ceramic Products', 4.2, 2800.00, 320.00, 1400.00, 'PENDING', 32, 'Sophia Anderson', 'demo15@example.com', '+1-555-0114', '1010 Supreme Lane, Sample County'),
+  ('SUP-016', 'Best Trading Co.', 'Textile Goods', 1.7, 1000.00, 130.00, 500.00, 'READY TO SHIP', 12, 'Benjamin Thomas', 'demo16@example.com', '+1-555-0115', '1111 Best Street, Sample City'),
+  ('SUP-017', 'Top Exports Ltd.', 'Hardware Items', 3.1, 1900.00, 230.00, 950.00, 'IN PRODUCTION', 21, 'Ava Jackson', 'demo17@example.com', '+1-555-0116', '1212 Top Ave, Demo Town'),
+  ('SUP-018', 'Advanced Materials', 'Composite Parts', 2.4, 1500.00, 180.00, 750.00, 'AWAITING SUPPLIER', 23, 'Lucas White', 'demo18@example.com', '+1-555-0117', '1313 Advanced Road, Test City'),
+  ('SUP-019', 'Modern Industries', 'Tech Components', 3.6, 2300.00, 270.00, 1150.00, 'NEED PAYMENT', 17, 'Mia Harris', 'demo19@example.com', '+1-555-0118', '1414 Modern Blvd, Demo State'),
+  ('SUP-020', 'Future Trading', 'Smart Devices', 2.0, 1200.00, 150.00, 600.00, 'PENDING', 26, 'Ethan Martin', 'demo20@example.com', '+1-555-0119', '1515 Future Lane, Sample County')
 ON CONFLICT (reference_code) DO NOTHING;
 
 -- Insert container items (fictional data with 20+ entries per container)

@@ -22,6 +22,7 @@ import {
   CheckCircleOutlined,
   CloseCircleOutlined,
   SyncOutlined,
+  MailOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
@@ -43,11 +44,17 @@ export const ApiConnectionsList: React.FC = () => {
   const [selectedDataSource, setSelectedDataSource] = useState<string | undefined>(
     undefined
   );
+  const [selectedEmailType, setSelectedEmailType] = useState<string | undefined>(
+    undefined
+  );
   const [connectionStatus, setConnectionStatus] = useState<
     "idle" | "connecting" | "connected" | "error"
   >("idle");
   const [dataFetchStatus, setDataFetchStatus] = useState<
     "idle" | "fetching" | "success" | "error"
+  >("idle");
+  const [emailSendStatus, setEmailSendStatus] = useState<
+    "idle" | "sending" | "success" | "error"
   >("idle");
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
     {
@@ -65,10 +72,8 @@ export const ApiConnectionsList: React.FC = () => {
     "DEMO-002 NORTH",
     "DEMO-003 SOUTH",
     "DEMO-004 SOUTH",
-    "DEMO-005 SOUTH",
     "SUPPLIER LIST",
     "ARRIVALS",
-    "ENTYPO PARALAVIS",
     "CHARTS",
     "API CONNECTIONS",
   ];
@@ -84,14 +89,18 @@ export const ApiConnectionsList: React.FC = () => {
     { value: "participants", label: "Get Participants Data", icon: "👥" },
   ];
 
+  const emailOptions = [
+    { value: "reports", label: "Reports", icon: "📊" },
+    { value: "tests", label: "Tests", icon: "🧪" },
+    { value: "statistics", label: "Statistics", icon: "📈" },
+  ];
+
   // Redirect when a different view is selected
   useEffect(() => {
     if (selectedView === "SUPPLIER LIST") {
       navigate("/suppliers");
     } else if (selectedView === "ARRIVALS") {
       navigate("/arrivals");
-    } else if (selectedView === "ENTYPO PARALAVIS") {
-      navigate("/entypo-paralavis");
     } else if (selectedView === "CHARTS") {
       navigate("/charts");
     } else if (selectedView !== "API CONNECTIONS") {
@@ -141,6 +150,28 @@ export const ApiConnectionsList: React.FC = () => {
         duration: 3,
       });
     }, 1500);
+  };
+
+  const handleSendEmail = () => {
+    if (!selectedEmailType) {
+      message.warning("Please select an email type first");
+      return;
+    }
+
+    setEmailSendStatus("sending");
+    message.loading({ content: "Sending email...", key: "email" });
+
+    // Simulate email sending process
+    setTimeout(() => {
+      setEmailSendStatus("success");
+      message.success({
+        content: `Successfully sent ${
+          emailOptions.find((e) => e.value === selectedEmailType)?.label
+        } email`,
+        key: "email",
+        duration: 3,
+      });
+    }, 2000);
   };
 
   const handleSendMessage = () => {
@@ -300,7 +331,7 @@ export const ApiConnectionsList: React.FC = () => {
         <Space direction="vertical" size="large" style={{ width: "100%" }}>
           <Row gutter={[16, 16]}>
             {/* ERP Connection Section */}
-            <Col xs={24} lg={12}>
+            <Col xs={24} lg={8}>
               <Card
                 title={
                   <span>
@@ -378,7 +409,7 @@ export const ApiConnectionsList: React.FC = () => {
             </Col>
 
             {/* Data Fetch Section */}
-            <Col xs={24} lg={12}>
+            <Col xs={24} lg={8}>
               <Card
                 title={
                   <span>
@@ -448,6 +479,84 @@ export const ApiConnectionsList: React.FC = () => {
                     <ul style={{ color: "#9ca3af", fontSize: "13px", marginTop: "8px" }}>
                       <li>Test Data - Sample data for testing integrations</li>
                       <li>Participants Data - Partner and stakeholder information</li>
+                    </ul>
+                  </div>
+                </Space>
+              </Card>
+            </Col>
+
+            {/* Send Email Section */}
+            <Col xs={24} lg={8}>
+              <Card
+                title={
+                  <span>
+                    <MailOutlined style={{ marginRight: "8px" }} />
+                    Send Email
+                  </span>
+                }
+              >
+                <Space direction="vertical" size="middle" style={{ width: "100%" }}>
+                  <div>
+                    <Text style={{ color: "#d1d5db", display: "block", marginBottom: "8px" }}>
+                      Select Email Type:
+                    </Text>
+                    <Select
+                      placeholder="Choose email type"
+                      style={{ width: "100%" }}
+                      size="large"
+                      value={selectedEmailType}
+                      onChange={(value) => {
+                        setSelectedEmailType(value);
+                        setEmailSendStatus("idle");
+                      }}
+                    >
+                      {emailOptions.map((option) => (
+                        <Option key={option.value} value={option.value}>
+                          <span style={{ marginRight: "8px" }}>{option.icon}</span>
+                          {option.label}
+                        </Option>
+                      ))}
+                    </Select>
+                  </div>
+
+                  <Button
+                    type="primary"
+                    size="large"
+                    icon={<SendOutlined />}
+                    onClick={handleSendEmail}
+                    disabled={!selectedEmailType || emailSendStatus === "sending"}
+                    loading={emailSendStatus === "sending"}
+                    style={{
+                      width: "100%",
+                      backgroundColor: "#8b5cf6",
+                      borderColor: "#8b5cf6",
+                    }}
+                  >
+                    {emailSendStatus === "sending" ? "Sending..." : "Send Email"}
+                  </Button>
+
+                  {emailSendStatus !== "idle" && (
+                    <Tag
+                      icon={getStatusIcon(emailSendStatus)}
+                      color={getStatusColor(emailSendStatus)}
+                      style={{ width: "100%", textAlign: "center", padding: "8px" }}
+                    >
+                      {emailSendStatus === "success" && "Email Sent Successfully"}
+                      {emailSendStatus === "sending" && "Sending Email..."}
+                      {emailSendStatus === "error" && "Send Failed"}
+                    </Tag>
+                  )}
+
+                  <Divider style={{ borderColor: "#374151" }} />
+
+                  <div>
+                    <Paragraph style={{ color: "#9ca3af", fontSize: "14px", margin: 0 }}>
+                      <strong>Email Options:</strong>
+                    </Paragraph>
+                    <ul style={{ color: "#9ca3af", fontSize: "13px", marginTop: "8px" }}>
+                      <li>Reports - Automated container reports</li>
+                      <li>Tests - Test results and validations</li>
+                      <li>Statistics - Statistical analysis data</li>
                     </ul>
                   </div>
                 </Space>
