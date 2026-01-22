@@ -32,11 +32,6 @@ export const SuppliersShow: React.FC = () => {
             </Title>
             <Space>
               <Tag color="blue">{record?.reference_code}</Tag>
-              {record?.port && (
-                <Tag color={record.port === "SHENZHEN" ? "blue" : "green"}>
-                  {record.port}
-                </Tag>
-              )}
               {record?.active !== undefined && (
                 <Tag color={record.active ? "success" : "default"}>
                   {record.active ? (
@@ -86,13 +81,6 @@ export const SuppliersShow: React.FC = () => {
             </Descriptions.Item>
             <Descriptions.Item label="Province/State">
               <TextField value={record?.province_state || "-"} />
-            </Descriptions.Item>
-            <Descriptions.Item label="Port">
-              {record?.port ? (
-                <Tag color={record.port === "SHENZHEN" ? "blue" : "green"}>
-                  {record.port}
-                </Tag>
-              ) : "-"}
             </Descriptions.Item>
             <Descriptions.Item label="Address" span={2}>
               <TextField value={record?.address || "-"} />

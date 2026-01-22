@@ -19,16 +19,16 @@ export const SuppliersList: React.FC = () => {
   const [editingRecordId, setEditingRecordId] = useState<number | null>(null);
   const [modalMode, setModalMode] = useState<"edit" | "create">("edit");
 
-  const views = ["DEMO-001 SOUTH", "DEMO-002 NORTH", "DEMO-003 SOUTH", "DEMO-004 SOUTH", "SUPPLIER LIST", "ARRIVALS", "CHARTS", "API CONNECTIONS"];
+  const views = ["DEMO-001 SOUTH", "DEMO-002 NORTH", "DEMO-003 SOUTH", "DEMO-004 SOUTH", "CHARTS", "API CONNECTIONS", "SUPPLIER LIST", "ARRIVALS"];
 
   // Redirect when a different view is selected
   useEffect(() => {
-    if (selectedView === "ARRIVALS") {
-      navigate("/arrivals");
-    } else if (selectedView === "CHARTS") {
+    if (selectedView === "CHARTS") {
       navigate("/charts");
     } else if (selectedView === "API CONNECTIONS") {
       navigate("/api-connections");
+    } else if (selectedView === "ARRIVALS") {
+      navigate("/arrivals");
     } else if (selectedView !== "SUPPLIER LIST") {
       navigate("/container-items");
     }
@@ -73,7 +73,6 @@ export const SuppliersList: React.FC = () => {
       "Reference Code": item.reference_code,
       "Supplier": item.supplier,
       "Product": item.product || "",
-      "Port": item.port || "",
       "Province": item.province_state || "",
       "Contact Person": item.contact_person || "",
       "Email": item.email || "",
@@ -166,7 +165,6 @@ export const SuppliersList: React.FC = () => {
         reference_code: row["Reference Code"] || "",
         supplier: row["Supplier"] || "",
         product: row["Product"] || "",
-        port: row["Port"] || "",
         province_state: row["Province"] || "",
         contact_person: row["Contact Person"] || "",
         email: row["Email"] || "",
@@ -403,21 +401,6 @@ export const SuppliersList: React.FC = () => {
               sorter
               width={180}
               render={(value) => <Text style={{ color: "#d1d5db", fontSize: "16px" }}>{value || "-"}</Text>}
-            />
-
-            <Table.Column
-              dataIndex="port"
-              title="Port"
-              sorter
-              filters={[
-                { text: "Port A", value: "SHENZHEN" },
-                { text: "Port B", value: "TIANJIN" },
-              ]}
-              render={(value) => {
-                if (!value) return <Text style={{ color: "#6b7280" }}>-</Text>;
-                const color = value === "SHENZHEN" ? "blue" : "green";
-                return <Tag color={color}>{value}</Tag>;
-              }}
             />
 
             <Table.Column

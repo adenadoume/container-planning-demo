@@ -63,11 +63,6 @@ export const SupplierEditModal: React.FC<EditModalProps> = ({
     });
   }, [mode, visible, recordId, supplierData, formProps.form, queryResult?.isLoading]);
 
-  const portOptions = [
-    { label: "SHENZHEN", value: "SHENZHEN" },
-    { label: "TIANJIN", value: "TIANJIN" },
-  ];
-
   // Dark theme styles
   const darkStyles = {
     label: {
@@ -274,24 +269,6 @@ export const SupplierEditModal: React.FC<EditModalProps> = ({
                   name="province_state"
                 >
                   <Input style={darkStyles.input} placeholder="Guangdong" />
-                </Form.Item>
-
-                <Form.Item
-                  label={<span style={darkStyles.label}>Port</span>}
-                  name="port"
-                >
-                  <Select
-                    options={portOptions}
-                    size="large"
-                    placeholder="Select port"
-                    allowClear
-                    style={{
-                      backgroundColor: '#2a2a2a',
-                      borderColor: '#404040',
-                      color: '#e0e0e0',
-                      fontSize: '16px',
-                    }}
-                  />
                 </Form.Item>
 
                 <Form.Item

@@ -18,19 +18,19 @@ export const ArrivalsList: React.FC = () => {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editingData, setEditingData] = useState<Partial<Arrival>>({});
 
-  const views = ["DEMO-001 SOUTH", "DEMO-002 NORTH", "DEMO-003 SOUTH", "DEMO-004 SOUTH", "SUPPLIER LIST", "ARRIVALS", "CHARTS", "API CONNECTIONS"];
+  const views = ["DEMO-001 SOUTH", "DEMO-002 NORTH", "DEMO-003 SOUTH", "DEMO-004 SOUTH", "CHARTS", "API CONNECTIONS", "SUPPLIER LIST", "ARRIVALS"];
 
   // Handle view change navigation
   const handleViewChange = (value: string) => {
     setSelectedView(value);
-    if (value === "SUPPLIER LIST") {
-      navigate("/suppliers");
-    } else if (value === "ARRIVALS") {
-      navigate("/arrivals");
-    } else if (value === "CHARTS") {
+    if (value === "CHARTS") {
       navigate("/charts");
     } else if (value === "API CONNECTIONS") {
       navigate("/api-connections");
+    } else if (value === "SUPPLIER LIST") {
+      navigate("/suppliers");
+    } else if (value === "ARRIVALS") {
+      navigate("/arrivals");
     } else if (value === "DEMO-001 SOUTH") {
       navigate("/container-items/DEMO-001");
     } else if (value === "DEMO-002 NORTH") {

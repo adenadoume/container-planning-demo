@@ -33,26 +33,22 @@ export const EntypoParaliavisList: React.FC = () => {
     "DEMO-002 NORTH",
     "DEMO-003 SOUTH",
     "DEMO-004 SOUTH",
-    "DEMO-005 SOUTH",
-    "SUPPLIER LIST",
-    "ARRIVALS",
-    "ENTYPO PARALAVIS",
     "CHARTS",
-    "API CONNECTIONS"
+    "API CONNECTIONS",
+    "SUPPLIER LIST",
+    "ARRIVALS"
   ];
 
   const handleViewChange = (value: string) => {
     setSelectedView(value);
-    if (value === "SUPPLIER LIST") {
-      navigate("/suppliers");
-    } else if (value === "ARRIVALS") {
-      navigate("/arrivals");
-    } else if (value === "ENTYPO PARALAVIS") {
-      navigate("/entypo-paralavis");
-    } else if (value === "CHARTS") {
+    if (value === "CHARTS") {
       navigate("/charts");
     } else if (value === "API CONNECTIONS") {
       navigate("/api-connections");
+    } else if (value === "SUPPLIER LIST") {
+      navigate("/suppliers");
+    } else if (value === "ARRIVALS") {
+      navigate("/arrivals");
     } else {
       const containerMap: Record<string, string> = {
         'DEMO-001 SOUTH': 'DEMO-001',

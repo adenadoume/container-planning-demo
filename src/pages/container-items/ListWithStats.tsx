@@ -35,21 +35,21 @@ export const ContainerItemsListWithStats: React.FC = () => {
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [editingRecordId, setEditingRecordId] = useState<number | null>(null);
 
-  const containers = ["DEMO-001 SOUTH", "DEMO-002 NORTH", "DEMO-003 SOUTH", "DEMO-004 SOUTH", "SUPPLIER LIST", "ARRIVALS", "CHARTS", "API CONNECTIONS"];
+  const containers = ["DEMO-001 SOUTH", "DEMO-002 NORTH", "DEMO-003 SOUTH", "DEMO-004 SOUTH", "CHARTS", "API CONNECTIONS", "SUPPLIER LIST", "ARRIVALS"];
 
   // Handle container change - update URL and state
   const handleContainerChange = (value: string) => {
     setSelectedContainer(value);
 
     // Update URL to match selection
-    if (value === "SUPPLIER LIST") {
-      navigate("/suppliers");
-    } else if (value === "ARRIVALS") {
-      navigate("/arrivals");
-    } else if (value === "CHARTS") {
+    if (value === "CHARTS") {
       navigate("/charts");
     } else if (value === "API CONNECTIONS") {
       navigate("/api-connections");
+    } else if (value === "SUPPLIER LIST") {
+      navigate("/suppliers");
+    } else if (value === "ARRIVALS") {
+      navigate("/arrivals");
     } else if (value === "DEMO-001 SOUTH") {
       navigate("/container-items/DEMO-001");
     } else if (value === "DEMO-002 NORTH") {

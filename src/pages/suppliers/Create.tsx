@@ -10,11 +10,6 @@ export const SuppliersCreate: React.FC = () => {
     resource: "suppliers",
   });
 
-  const portOptions = [
-    { label: "Shenzhen", value: "SHENZHEN" },
-    { label: "Tianjin", value: "TIANJIN" },
-  ];
-
   return (
     <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
@@ -63,14 +58,6 @@ export const SuppliersCreate: React.FC = () => {
 
               <Form.Item label="Province/State" name="province_state">
                 <Input placeholder="e.g., Guangdong, Jiangsu" />
-              </Form.Item>
-
-              <Form.Item label="Port" name="port">
-                <Select
-                  options={portOptions}
-                  placeholder="Select shipping port"
-                  allowClear
-                />
               </Form.Item>
 
               <Form.Item label="Address" name="address">

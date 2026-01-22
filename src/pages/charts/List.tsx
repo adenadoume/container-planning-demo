@@ -319,8 +319,8 @@ export const ChartsList: React.FC = () => {
               <ResponsiveContainer width="100%" height={400}>
                 <BarChart data={containerData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis dataKey="container" stroke="#d1d5db" />
-                  <YAxis stroke="#d1d5db" />
+                  <XAxis dataKey="container" stroke="#d1d5db" style={{ fontSize: "14px" }} />
+                  <YAxis stroke="#d1d5db" label={{ value: 'CBM', angle: -90, position: 'insideLeft', fill: '#d1d5db' }} />
                   <Tooltip
                     contentStyle={{
                       backgroundColor: "#ffffff",
@@ -329,9 +329,10 @@ export const ChartsList: React.FC = () => {
                     }}
                     labelStyle={{ color: "#111827", fontWeight: "bold" }}
                     itemStyle={{ color: "#374151" }}
+                    formatter={(value: any) => [`${Number(value).toFixed(2)} CBM`, "Total Volume"]}
                   />
                   <Legend />
-                  <Bar dataKey="cbm" fill="#3b82f6" name="Total CBM" />
+                  <Bar dataKey="cbm" fill="#3b82f6" name="Total CBM" label={{ position: 'top', fill: '#d1d5db', formatter: (value: number) => value.toFixed(1) }} />
                 </BarChart>
               </ResponsiveContainer>
             </Card>
@@ -356,8 +357,8 @@ export const ChartsList: React.FC = () => {
                         cx="50%"
                         cy="50%"
                         labelLine={false}
-                        label={({ name, percent }) =>
-                          `${name}: ${((percent || 0) * 100).toFixed(0)}%`
+                        label={({ name, value, percent }) =>
+                          `${name}: ${value} (${((percent || 0) * 100).toFixed(0)}%)`
                         }
                         outerRadius={120}
                         fill="#8884d8"
@@ -378,6 +379,15 @@ export const ChartsList: React.FC = () => {
                         }}
                         labelStyle={{ color: "#111827", fontWeight: "bold" }}
                         itemStyle={{ color: "#374151" }}
+                        formatter={(value: any) => [`${value} items`, "Count"]}
+                      />
+                      <Legend
+                        wrapperStyle={{ color: "#d1d5db" }}
+                        formatter={(value, entry: any) => (
+                          <span style={{ color: "#d1d5db" }}>
+                            {value}: {entry.payload.value} items
+                          </span>
+                        )}
                       />
                     </PieChart>
                   </ResponsiveContainer>
@@ -399,8 +409,8 @@ export const ChartsList: React.FC = () => {
                   <ResponsiveContainer width="100%" height={400}>
                     <LineChart data={supplierData}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                      <XAxis dataKey="supplier" stroke="#d1d5db" />
-                      <YAxis stroke="#d1d5db" />
+                      <XAxis dataKey="supplier" stroke="#d1d5db" style={{ fontSize: "12px" }} angle={-15} textAnchor="end" height={80} />
+                      <YAxis stroke="#d1d5db" label={{ value: 'Items', angle: -90, position: 'insideLeft', fill: '#d1d5db' }} />
                       <Tooltip
                         contentStyle={{
                           backgroundColor: "#ffffff",
@@ -409,6 +419,7 @@ export const ChartsList: React.FC = () => {
                         }}
                         labelStyle={{ color: "#111827", fontWeight: "bold" }}
                         itemStyle={{ color: "#374151" }}
+                        formatter={(value: any) => [`${value} items`, "Total Items"]}
                       />
                       <Legend />
                       <Line
@@ -418,6 +429,8 @@ export const ChartsList: React.FC = () => {
                         strokeWidth={3}
                         name="Number of Items"
                         dot={{ fill: "#10b981", r: 6 }}
+                        activeDot={{ r: 8 }}
+                        label={{ position: 'top', fill: '#d1d5db' }}
                       />
                     </LineChart>
                   </ResponsiveContainer>
@@ -449,8 +462,8 @@ export const ChartsList: React.FC = () => {
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis dataKey="container" stroke="#d1d5db" />
-                  <YAxis stroke="#d1d5db" />
+                  <XAxis dataKey="container" stroke="#d1d5db" style={{ fontSize: "14px" }} />
+                  <YAxis stroke="#d1d5db" label={{ value: 'Cost ($)', angle: -90, position: 'insideLeft', fill: '#d1d5db' }} />
                   <Tooltip
                     contentStyle={{
                       backgroundColor: "#ffffff",
@@ -459,10 +472,11 @@ export const ChartsList: React.FC = () => {
                     }}
                     labelStyle={{ color: "#111827", fontWeight: "bold" }}
                     itemStyle={{ color: "#374151" }}
+                    formatter={(value: any) => [`$${Number(value).toLocaleString()}`, ""]}
                   />
                   <Legend />
-                  <Area type="monotone" dataKey="productCost" stroke="#3b82f6" fillOpacity={1} fill="url(#colorProduct)" name="Product Cost" />
-                  <Area type="monotone" dataKey="freightCost" stroke="#10b981" fillOpacity={1} fill="url(#colorFreight)" name="Freight Cost" />
+                  <Area type="monotone" dataKey="productCost" stroke="#3b82f6" fillOpacity={1} fill="url(#colorProduct)" name="Product Cost ($)" />
+                  <Area type="monotone" dataKey="freightCost" stroke="#10b981" fillOpacity={1} fill="url(#colorFreight)" name="Freight Cost ($)" />
                 </AreaChart>
               </ResponsiveContainer>
             </Card>
@@ -491,7 +505,7 @@ export const ChartsList: React.FC = () => {
                       endAngle={0}
                     >
                       <RadialBar
-                        label={{ position: 'insideStart', fill: '#fff', fontSize: 14 }}
+                        label={{ position: 'insideStart', fill: '#fff', fontSize: 14, formatter: (value: number) => `${value}` }}
                         background
                         dataKey="value"
                       />
@@ -501,6 +515,7 @@ export const ChartsList: React.FC = () => {
                         verticalAlign="middle" 
                         align="right"
                         wrapperStyle={{ color: "#d1d5db" }}
+                        formatter={(value, entry: any) => `${value}: ${entry.payload.value} items`}
                       />
                       <Tooltip
                         contentStyle={{
@@ -510,6 +525,7 @@ export const ChartsList: React.FC = () => {
                         }}
                         labelStyle={{ color: "#111827", fontWeight: "bold" }}
                         itemStyle={{ color: "#374151" }}
+                        formatter={(value: any) => [`${value} items`, "Total"]}
                       />
                     </RadialBarChart>
                   </ResponsiveContainer>
@@ -534,9 +550,9 @@ export const ChartsList: React.FC = () => {
                       itemCount: statusData.filter((_s, i) => i === index).reduce((sum, s) => sum + s.value, statusData.reduce((sum, s) => sum + s.value, 0) / containerData.length)
                     }))}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                      <XAxis dataKey="container" stroke="#d1d5db" />
-                      <YAxis yAxisId="left" stroke="#d1d5db" />
-                      <YAxis yAxisId="right" orientation="right" stroke="#d1d5db" />
+                      <XAxis dataKey="container" stroke="#d1d5db" style={{ fontSize: "14px" }} />
+                      <YAxis yAxisId="left" stroke="#3b82f6" label={{ value: 'CBM', angle: -90, position: 'insideLeft', fill: '#3b82f6' }} />
+                      <YAxis yAxisId="right" orientation="right" stroke="#ef4444" label={{ value: 'Items', angle: 90, position: 'insideRight', fill: '#ef4444' }} />
                       <Tooltip
                         contentStyle={{
                           backgroundColor: "#ffffff",
@@ -545,10 +561,14 @@ export const ChartsList: React.FC = () => {
                         }}
                         labelStyle={{ color: "#111827", fontWeight: "bold" }}
                         itemStyle={{ color: "#374151" }}
+                        formatter={(value: any, name: string) => {
+                          if (name === "Total CBM") return [`${Number(value).toFixed(2)} CBM`, name];
+                          return [`${Math.round(value)} items`, name];
+                        }}
                       />
                       <Legend />
-                      <Bar yAxisId="left" dataKey="cbm" fill="#3b82f6" name="Total CBM" />
-                      <Line yAxisId="right" type="monotone" dataKey="itemCount" stroke="#ef4444" strokeWidth={3} name="Items Count" dot={{ fill: "#ef4444", r: 6 }} />
+                      <Bar yAxisId="left" dataKey="cbm" fill="#3b82f6" name="Total CBM" label={{ position: 'top', fill: '#d1d5db', formatter: (value: number) => value.toFixed(1) }} />
+                      <Line yAxisId="right" type="monotone" dataKey="itemCount" stroke="#ef4444" strokeWidth={3} name="Items Count" dot={{ fill: "#ef4444", r: 6 }} activeDot={{ r: 8 }} />
                     </ComposedChart>
                   </ResponsiveContainer>
                 </Card>
