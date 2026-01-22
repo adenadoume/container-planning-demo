@@ -162,9 +162,9 @@ export const ApiConnectionsList: React.FC = () => {
     setTimeout(() => {
       const responses = [
         "I can help you analyze container utilization and optimize your shipping routes.",
-        "Let me check the current status of your containers. Based on the data, DEMO-001 SOUTH has 20 items with a total of 56.4 CBM.",
+        "Let me check the current status of your containers. Based on the data, DEMO-001 SOUTH has multiple items ready to ship.",
         "I recommend grouping items by similar delivery dates to optimize container loading efficiency.",
-        "The current average CBM per container is approximately 150. You're utilizing space efficiently!",
+        "The current average CBM per container shows good space utilization!",
         "Would you like me to generate a report on container costs vs. capacity utilization?",
         "I can help you track supplier performance and identify potential bottlenecks in your supply chain.",
       ];
