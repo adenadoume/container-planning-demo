@@ -332,7 +332,7 @@ export const ChartsList: React.FC = () => {
                     formatter={(value: any) => [`${Number(value).toFixed(2)} CBM`, "Total Volume"]}
                   />
                   <Legend />
-                  <Bar dataKey="cbm" fill="#3b82f6" name="Total CBM" label={{ position: 'top', fill: '#d1d5db', formatter: (value: number) => value.toFixed(1) }} />
+                  <Bar dataKey="cbm" fill="#3b82f6" name="Total CBM" label={{ position: 'top', fill: '#d1d5db', formatter: (value: any) => Number(value).toFixed(1) }} />
                 </BarChart>
               </ResponsiveContainer>
             </Card>
@@ -505,7 +505,7 @@ export const ChartsList: React.FC = () => {
                       endAngle={0}
                     >
                       <RadialBar
-                        label={{ position: 'insideStart', fill: '#fff', fontSize: 14, formatter: (value: number) => `${value}` }}
+                        label={{ position: 'insideStart', fill: '#fff', fontSize: 14, formatter: (value: any) => `${value || ''}` }}
                         background
                         dataKey="value"
                       />
@@ -561,13 +561,13 @@ export const ChartsList: React.FC = () => {
                         }}
                         labelStyle={{ color: "#111827", fontWeight: "bold" }}
                         itemStyle={{ color: "#374151" }}
-                        formatter={(value: any, name: string) => {
-                          if (name === "Total CBM") return [`${Number(value).toFixed(2)} CBM`, name];
-                          return [`${Math.round(value)} items`, name];
+                        formatter={(value: any, name?: string) => {
+                          if (name === "Total CBM") return [`${Number(value).toFixed(2)} CBM`, name || ""];
+                          return [`${Math.round(value)} items`, name || ""];
                         }}
                       />
                       <Legend />
-                      <Bar yAxisId="left" dataKey="cbm" fill="#3b82f6" name="Total CBM" label={{ position: 'top', fill: '#d1d5db', formatter: (value: number) => value.toFixed(1) }} />
+                      <Bar yAxisId="left" dataKey="cbm" fill="#3b82f6" name="Total CBM" label={{ position: 'top', fill: '#d1d5db', formatter: (value: any) => Number(value).toFixed(1) }} />
                       <Line yAxisId="right" type="monotone" dataKey="itemCount" stroke="#ef4444" strokeWidth={3} name="Items Count" dot={{ fill: "#ef4444", r: 6 }} activeDot={{ r: 8 }} />
                     </ComposedChart>
                   </ResponsiveContainer>

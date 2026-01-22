@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Edit, useForm } from "@refinedev/antd";
-import { Form, Input, Select, Switch, Row, Col, Card } from "antd";
+import { Form, Input, Switch, Row, Col, Card } from "antd";
 import { useParams } from "react-router-dom";
 import { Supplier } from "../../services/supabase";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Create, useForm } from "@refinedev/antd";
-import { Form, Input, Select, Switch, Row, Col, Card } from "antd";
+import { Form, Input, Switch, Row, Col, Card } from "antd";
 import { Supplier } from "../../services/supabase";
 
 const { TextArea } = Input;
