@@ -140,8 +140,7 @@ function App() {
             {/* Direct Container URLs (redirect to proper format) */}
             <Route path="/DEMO-001" element={<Navigate to="/container-items/DEMO-001" replace />} />
             <Route path="/DEMO-002" element={<Navigate to="/container-items/DEMO-002" replace />} />
-            <Route path="/DEMO-004" element={<Navigate to="/container-items/DEMO-004" replace />} />
-            <Route path="/DEMO-005" element={<Navigate to="/container-items/DEMO-005" replace />} />
+            <Route path="/DEMO-003" element={<Navigate to="/container-items/DEMO-003" replace />} />
             <Route path="/Suppliers" element={<Navigate to="/suppliers" replace />} />
 
             {/* Suppliers - No sidebar, just dropdown */}
@@ -194,7 +193,7 @@ function App() {
             </Route>
 
             {/* Default Route */}
-            <Route path="/" element={<Navigate to="/container-items" replace />} />
+            <Route path="/" element={<Navigate to="/container-items/DEMO-001" replace />} />
           </Routes>
         </Refine>
     </BrowserRouter>

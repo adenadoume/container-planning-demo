@@ -71,11 +71,10 @@ export const ApiConnectionsList: React.FC = () => {
     "DEMO-001 SOUTH",
     "DEMO-002 NORTH",
     "DEMO-003 SOUTH",
-    "DEMO-004 SOUTH",
-    "SUPPLIER LIST",
-    "ARRIVALS",
     "CHARTS",
     "API CONNECTIONS",
+    "SUPPLIER LIST",
+    "ARRIVALS",
   ];
 
   const erpOptions = [
@@ -97,14 +96,18 @@ export const ApiConnectionsList: React.FC = () => {
 
   // Redirect when a different view is selected
   useEffect(() => {
-    if (selectedView === "SUPPLIER LIST") {
+    if (selectedView === "CHARTS") {
+      navigate("/charts");
+    } else if (selectedView === "SUPPLIER LIST") {
       navigate("/suppliers");
     } else if (selectedView === "ARRIVALS") {
       navigate("/arrivals");
-    } else if (selectedView === "CHARTS") {
-      navigate("/charts");
-    } else if (selectedView !== "API CONNECTIONS") {
-      navigate("/container-items");
+    } else if (selectedView === "DEMO-001 SOUTH") {
+      navigate("/container-items/DEMO-001");
+    } else if (selectedView === "DEMO-002 NORTH") {
+      navigate("/container-items/DEMO-002");
+    } else if (selectedView === "DEMO-003 SOUTH") {
+      navigate("/container-items/DEMO-003");
     }
   }, [selectedView, navigate]);
 
