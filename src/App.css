@@ -81,3 +81,26 @@ input[type="number"]::-webkit-outer-spin-button {
   scrollbar-color: #4b5563 #1f2937;
 }
 
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 0.5rem;
+  }
+  
+  .ant-card {
+    margin: 0 !important;
+  }
+  
+  .ant-table-wrapper {
+    overflow-x: auto;
+  }
+  
+  .ant-select {
+    min-width: 120px !important;
+  }
+  
+  .ant-space-item {
+    flex-shrink: 0;
+  }
+}
+

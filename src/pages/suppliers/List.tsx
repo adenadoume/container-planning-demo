@@ -201,6 +201,21 @@ export const SuppliersList: React.FC = () => {
   return (
     <>
       <style>{`
+          /* Responsive button text */
+          @media (max-width: 768px) {
+            .btn-text {
+              display: none;
+            }
+            .ant-btn {
+              padding: 4px 8px !important;
+              min-width: 32px !important;
+              font-size: 14px !important;
+            }
+            .ant-space {
+              gap: 4px !important;
+            }
+          }
+        
         .table-row-dark-even {
           background-color: #1f2937 !important;
         }
@@ -319,7 +334,7 @@ export const SuppliersList: React.FC = () => {
           </div>
 
           {/* Action Buttons */}
-          <Space size="middle">
+          <Space wrap size="small">
             <Button
               type="primary"
               icon={<PlusOutlined />}
@@ -328,19 +343,17 @@ export const SuppliersList: React.FC = () => {
                 setEditingRecordId(null);
                 setEditModalVisible(true);
               }}
-              size="large"
               style={{ backgroundColor: "#8b5cf6", borderColor: "#8b5cf6" }}
             >
-              Create New Supplier
+              <span className="btn-text">Create</span>
             </Button>
             <Button
               type="primary"
               icon={<DownloadOutlined />}
               onClick={handleExportExcel}
-              size="large"
               style={{ backgroundColor: "#10b981", borderColor: "#10b981" }}
             >
-              Export to Excel
+              <span className="btn-text">Export</span>
             </Button>
             {/* Import button only visible on localhost (development) */}
             {import.meta.env.DEV && (
@@ -352,10 +365,9 @@ export const SuppliersList: React.FC = () => {
                 <Button
                   type="primary"
                   icon={<UploadOutlined />}
-                  size="large"
                   style={{ backgroundColor: "#3b82f6", borderColor: "#3b82f6" }}
                 >
-                  Import from Excel
+                  <span className="btn-text">Import</span>
                 </Button>
               </Upload>
             )}

@@ -646,22 +646,39 @@ export const EntypoParaliavisList: React.FC = () => {
           />
         </div>
 
-        <Space>
+        <Space wrap size="small">
           <Button
             type="primary"
             icon={<DownloadOutlined />}
             onClick={handleExportExcel}
           >
-            Export to Excel
+            <span className="btn-text">Export</span>
           </Button>
           <Button
             type="primary"
             icon={<PlusOutlined />}
             onClick={handleAddNew}
           >
-            Add New Row
+            <span className="btn-text">Add Row</span>
           </Button>
         </Space>
+        
+        <style>{`
+          /* Responsive button text */
+          @media (max-width: 768px) {
+            .btn-text {
+              display: none;
+            }
+            .ant-btn {
+              padding: 4px 8px !important;
+              min-width: 32px !important;
+              font-size: 14px !important;
+            }
+            .ant-space {
+              gap: 4px !important;
+            }
+          }
+        `}</style>
 
         <Table
           dataSource={data}

@@ -557,15 +557,14 @@ export const ContainerItemsListWithStats: React.FC = () => {
         </div>
 
         {/* Export/Import Buttons */}
-        <Space size="middle">
+        <Space wrap size="small" style={{ marginBottom: "16px" }}>
           <Button
             type="primary"
             icon={<DownloadOutlined />}
             onClick={handleExportExcel}
-            size="large"
             style={{ backgroundColor: "#10b981", borderColor: "#10b981" }}
           >
-            Export to Excel
+            <span className="btn-text">Export</span>
           </Button>
           <Upload
             accept=".xlsx,.xls"
@@ -575,13 +574,28 @@ export const ContainerItemsListWithStats: React.FC = () => {
             <Button
               type="primary"
               icon={<UploadOutlined />}
-              size="large"
               style={{ backgroundColor: "#3b82f6", borderColor: "#3b82f6" }}
             >
-              Import from Excel
+              <span className="btn-text">Import</span>
             </Button>
           </Upload>
         </Space>
+        
+        <style>{`
+          /* Responsive button text */
+          @media (max-width: 768px) {
+            .btn-text {
+              display: none;
+            }
+            .ant-btn {
+              padding: 4px 8px !important;
+              min-width: 32px !important;
+            }
+            .ant-space {
+              gap: 4px !important;
+            }
+          }
+        `}</style>
       </div>
 
       {/* Summary Boxes - Row 1 */}
