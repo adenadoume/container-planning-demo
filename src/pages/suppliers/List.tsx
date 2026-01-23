@@ -204,12 +204,33 @@ export const SuppliersList: React.FC = () => {
           /* Responsive button text */
           @media (max-width: 768px) {
             .btn-text {
-              display: none;
+              display: none !important;
             }
             .ant-btn {
-              padding: 4px 8px !important;
-              min-width: 32px !important;
+              padding: 2px 6px !important;
+              min-width: 28px !important;
+              height: 28px !important;
+              font-size: 12px !important;
+            }
+            .ant-btn .anticon {
               font-size: 14px !important;
+            }
+            .ant-space {
+              gap: 6px !important;
+            }
+            .ant-space-item {
+              margin: 0 !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .ant-btn {
+              padding: 2px 4px !important;
+              min-width: 24px !important;
+              height: 24px !important;
+            }
+            .ant-btn .anticon {
+              font-size: 12px !important;
             }
             .ant-space {
               gap: 4px !important;
