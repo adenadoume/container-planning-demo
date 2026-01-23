@@ -582,15 +582,12 @@ export const ContainerItemsListWithStats: React.FC = () => {
         </Space>
         
         <style>{`
-          /* Responsive button text */
+          /* Responsive button styles - keep text visible */
           @media (max-width: 768px) {
-            .btn-text {
-              display: none !important;
-            }
             .ant-btn {
-              padding: 2px 6px !important;
-              min-width: 28px !important;
-              height: 28px !important;
+              padding: 4px 8px !important;
+              min-width: auto !important;
+              height: auto !important;
               font-size: 12px !important;
             }
             .ant-btn .anticon {
@@ -606,9 +603,8 @@ export const ContainerItemsListWithStats: React.FC = () => {
           
           @media (max-width: 480px) {
             .ant-btn {
-              padding: 2px 4px !important;
-              min-width: 24px !important;
-              height: 24px !important;
+              padding: 4px 6px !important;
+              font-size: 11px !important;
             }
             .ant-btn .anticon {
               font-size: 12px !important;

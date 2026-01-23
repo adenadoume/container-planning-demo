@@ -139,9 +139,18 @@ function App() {
             
             {/* Direct Container URLs (redirect to proper format) */}
             <Route path="/DEMO-001" element={<Navigate to="/container-items/DEMO-001" replace />} />
+            <Route path="/DEMO-001-SOUTH" element={<Navigate to="/container-items/DEMO-001" replace />} />
             <Route path="/DEMO-002" element={<Navigate to="/container-items/DEMO-002" replace />} />
+            <Route path="/DEMO-002-NORTH" element={<Navigate to="/container-items/DEMO-002" replace />} />
             <Route path="/DEMO-003" element={<Navigate to="/container-items/DEMO-003" replace />} />
+            <Route path="/DEMO-003-SOUTH" element={<Navigate to="/container-items/DEMO-003" replace />} />
+            
+            {/* Direct Page URLs (case-insensitive) */}
+            <Route path="/CHARTS" element={<Navigate to="/charts" replace />} />
+            <Route path="/API-CONNECTIONS" element={<Navigate to="/api-connections" replace />} />
+            <Route path="/SUPPLIER-LIST" element={<Navigate to="/suppliers" replace />} />
             <Route path="/Suppliers" element={<Navigate to="/suppliers" replace />} />
+            <Route path="/ARRIVALS" element={<Navigate to="/arrivals" replace />} />
 
             {/* Suppliers - No sidebar, just dropdown */}
             <Route path="/suppliers">
