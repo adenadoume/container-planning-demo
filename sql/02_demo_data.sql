@@ -5,8 +5,7 @@
 INSERT INTO containers (name) VALUES
   ('DEMO-001 SOUTH'),
   ('DEMO-002 NORTH'),
-  ('DEMO-003 SOUTH'),
-  ('DEMO-004 SOUTH')
+  ('DEMO-003 SOUTH')
 ON CONFLICT (name) DO NOTHING;
 
 -- Insert sample suppliers (fictional data - 20 entries)
@@ -99,37 +98,14 @@ INSERT INTO container_items (reference_code, container_name, cbm, product_cost, 
   ('SUP-057', 'DEMO-003 SOUTH', 2.8, 1750.00, 215.00, 875.00, 875.00, 'READY TO SHIP', 17, 'Jack Morris', 'demo57@example.com', '+1-555-0156', 'Client Alpha'),
   ('SUP-058', 'DEMO-003 SOUTH', 3.5, 2300.00, 270.00, 1150.00, 1150.00, 'IN PRODUCTION', 23, 'Aria Rogers', 'demo58@example.com', '+1-555-0157', 'Client Beta'),
   ('SUP-059', 'DEMO-003 SOUTH', 2.1, 1300.00, 160.00, 650.00, 650.00, 'AWAITING SUPPLIER', 20, 'Luke Reed', 'demo59@example.com', '+1-555-0158', 'Client Gamma'),
-  ('SUP-060', 'DEMO-003 SOUTH', 4.4, 3000.00, 355.00, 1500.00, 1500.00, 'NEED PAYMENT', 26, 'Layla Cook', 'demo60@example.com', '+1-555-0159', 'Client Delta'),
-  
-  -- DEMO-004 SOUTH (20 items)
-  ('SUP-061', 'DEMO-004 SOUTH', 3.2, 2100.00, 245.00, 1050.00, 1050.00, 'READY TO SHIP', 19, 'Oliver Peterson', 'demo61@example.com', '+1-555-0160', 'Client Alpha'),
-  ('SUP-062', 'DEMO-004 SOUTH', 2.9, 1800.00, 225.00, 900.00, 900.00, 'IN PRODUCTION', 21, 'Amelia Cooper', 'demo62@example.com', '+1-555-0161', 'Client Beta'),
-  ('SUP-063', 'DEMO-004 SOUTH', 4.3, 2900.00, 340.00, 1450.00, 1450.00, 'AWAITING SUPPLIER', 26, 'Elijah Bailey', 'demo63@example.com', '+1-555-0162', 'Client Gamma'),
-  ('SUP-064', 'DEMO-004 SOUTH', 2.4, 1500.00, 185.00, 750.00, 750.00, 'NEED PAYMENT', 15, 'Charlotte Rivera', 'demo64@example.com', '+1-555-0163', 'Client Delta'),
-  ('SUP-065', 'DEMO-004 SOUTH', 3.8, 2500.00, 295.00, 1250.00, 1250.00, 'PENDING', 30, 'William Cox', 'demo65@example.com', '+1-555-0164', 'Client Epsilon'),
-  ('SUP-066', 'DEMO-004 SOUTH', 2.6, 1600.00, 200.00, 800.00, 800.00, 'READY TO SHIP', 17, 'Sophia Howard', 'demo66@example.com', '+1-555-0165', 'Client Alpha'),
-  ('SUP-067', 'DEMO-004 SOUTH', 3.5, 2300.00, 270.00, 1150.00, 1150.00, 'IN PRODUCTION', 23, 'James Ward', 'demo67@example.com', '+1-555-0166', 'Client Beta'),
-  ('SUP-068', 'DEMO-004 SOUTH', 2.1, 1300.00, 165.00, 650.00, 650.00, 'AWAITING SUPPLIER', 20, 'Isabella Torres', 'demo68@example.com', '+1-555-0167', 'Client Gamma'),
-  ('SUP-069', 'DEMO-004 SOUTH', 4.6, 3100.00, 360.00, 1550.00, 1550.00, 'NEED PAYMENT', 28, 'Benjamin Peterson', 'demo69@example.com', '+1-555-0168', 'Client Delta'),
-  ('SUP-070', 'DEMO-004 SOUTH', 3.1, 2000.00, 240.00, 1000.00, 1000.00, 'PENDING', 27, 'Mia Gray', 'demo70@example.com', '+1-555-0169', 'Client Epsilon'),
-  ('SUP-071', 'DEMO-004 SOUTH', 2.7, 1700.00, 210.00, 850.00, 850.00, 'READY TO SHIP', 18, 'Lucas Ramirez', 'demo71@example.com', '+1-555-0170', 'Client Alpha'),
-  ('SUP-072', 'DEMO-004 SOUTH', 3.9, 2600.00, 305.00, 1300.00, 1300.00, 'IN PRODUCTION', 24, 'Harper James', 'demo72@example.com', '+1-555-0171', 'Client Beta'),
-  ('SUP-073', 'DEMO-004 SOUTH', 2.3, 1450.00, 180.00, 725.00, 725.00, 'AWAITING SUPPLIER', 22, 'Evelyn Watson', 'demo73@example.com', '+1-555-0172', 'Client Gamma'),
-  ('SUP-074', 'DEMO-004 SOUTH', 4.1, 2800.00, 325.00, 1400.00, 1400.00, 'NEED PAYMENT', 25, 'Alexander Brooks', 'demo74@example.com', '+1-555-0173', 'Client Delta'),
-  ('SUP-075', 'DEMO-004 SOUTH', 3.3, 2200.00, 260.00, 1100.00, 1100.00, 'PENDING', 29, 'Abigail Kelly', 'demo75@example.com', '+1-555-0174', 'Client Epsilon'),
-  ('SUP-076', 'DEMO-004 SOUTH', 2.5, 1550.00, 195.00, 775.00, 775.00, 'READY TO SHIP', 16, 'Daniel Sanders', 'demo76@example.com', '+1-555-0175', 'Client Alpha'),
-  ('SUP-077', 'DEMO-004 SOUTH', 3.7, 2450.00, 285.00, 1225.00, 1225.00, 'IN PRODUCTION', 21, 'Emily Price', 'demo77@example.com', '+1-555-0176', 'Client Beta'),
-  ('SUP-078', 'DEMO-004 SOUTH', 2.0, 1250.00, 160.00, 625.00, 625.00, 'AWAITING SUPPLIER', 19, 'Matthew Bennett', 'demo78@example.com', '+1-555-0177', 'Client Gamma'),
-  ('SUP-079', 'DEMO-004 SOUTH', 4.4, 3000.00, 350.00, 1500.00, 1500.00, 'NEED PAYMENT', 27, 'Elizabeth Wood', 'demo79@example.com', '+1-555-0178', 'Client Delta'),
-  ('SUP-080', 'DEMO-004 SOUTH', 3.4, 2250.00, 265.00, 1125.00, 1125.00, 'PENDING', 31, 'Joseph Barnes', 'demo80@example.com', '+1-555-0179', 'Client Epsilon')
+  ('SUP-060', 'DEMO-003 SOUTH', 4.4, 3000.00, 355.00, 1500.00, 1500.00, 'NEED PAYMENT', 26, 'Layla Cook', 'demo60@example.com', '+1-555-0159', 'Client Delta')
 ON CONFLICT DO NOTHING;
 
 -- Insert arrivals (fictional data with various statuses)
 INSERT INTO arrivals (container_code, departure_port, bl, ref, etd, piraeus, paleros) VALUES
   ('DEMO-001 SOUTH', 'Shanghai', 'BL-2024-001', 'REF-001', '2024-12-01', '2024-12-20', '2024-12-25'),
   ('DEMO-002 NORTH', 'Ningbo', 'BL-2024-002', 'REF-002', '2024-12-10', '2024-12-28', NULL),
-  ('DEMO-003 SOUTH', 'Shenzhen', 'BL-2024-003', 'REF-003', '2024-12-15', NULL, NULL),
-  ('DEMO-004 SOUTH', 'Guangzhou', 'BL-2024-004', 'REF-004', '2025-01-05', NULL, NULL)
+  ('DEMO-003 SOUTH', 'Shenzhen', 'BL-2024-003', 'REF-003', '2024-12-15', NULL, NULL)
 ON CONFLICT (container_code) DO NOTHING;
 
 -- Insert ENTYPO PARALAVIS sample data

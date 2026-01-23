@@ -32,7 +32,6 @@ export const EntypoParaliavisList: React.FC = () => {
     "DEMO-001 SOUTH",
     "DEMO-002 NORTH",
     "DEMO-003 SOUTH",
-    "DEMO-004 SOUTH",
     "CHARTS",
     "API CONNECTIONS",
     "SUPPLIER LIST",
@@ -54,8 +53,6 @@ export const EntypoParaliavisList: React.FC = () => {
         'DEMO-001 SOUTH': 'DEMO-001',
         'DEMO-002 NORTH': 'DEMO-002',
         'DEMO-003 SOUTH': 'DEMO-003',
-        'DEMO-004 SOUTH': 'DEMO-004',
-        'DEMO-005 SOUTH': 'DEMO-005',
       };
       const containerPath = containerMap[value];
       if (containerPath) {

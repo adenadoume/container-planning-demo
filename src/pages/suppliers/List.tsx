@@ -19,7 +19,7 @@ export const SuppliersList: React.FC = () => {
   const [editingRecordId, setEditingRecordId] = useState<number | null>(null);
   const [modalMode, setModalMode] = useState<"edit" | "create">("edit");
 
-  const views = ["DEMO-001 SOUTH", "DEMO-002 NORTH", "DEMO-003 SOUTH", "DEMO-004 SOUTH", "CHARTS", "API CONNECTIONS", "SUPPLIER LIST", "ARRIVALS"];
+  const views = ["DEMO-001 SOUTH", "DEMO-002 NORTH", "DEMO-003 SOUTH", "CHARTS", "API CONNECTIONS", "SUPPLIER LIST", "ARRIVALS"];
 
   // Redirect when a different view is selected
   useEffect(() => {
@@ -73,7 +73,6 @@ export const SuppliersList: React.FC = () => {
       "Reference Code": item.reference_code,
       "Supplier": item.supplier,
       "Product": item.product || "",
-      "Province": item.province_state || "",
       "Contact Person": item.contact_person || "",
       "Email": item.email || "",
       "Phone": item.contact_number || "",
@@ -165,7 +164,6 @@ export const SuppliersList: React.FC = () => {
         reference_code: row["Reference Code"] || "",
         supplier: row["Supplier"] || "",
         product: row["Product"] || "",
-        province_state: row["Province"] || "",
         contact_person: row["Contact Person"] || "",
         email: row["Email"] || "",
         contact_number: row["Phone"] || "",
@@ -400,14 +398,6 @@ export const SuppliersList: React.FC = () => {
               title="Product"
               sorter
               width={180}
-              render={(value) => <Text style={{ color: "#d1d5db", fontSize: "16px" }}>{value || "-"}</Text>}
-            />
-
-            <Table.Column
-              dataIndex="province_state"
-              title="Province"
-              sorter
-              ellipsis
               render={(value) => <Text style={{ color: "#d1d5db", fontSize: "16px" }}>{value || "-"}</Text>}
             />
 

@@ -21,8 +21,6 @@ export const ContainerItemsListWithStats: React.FC = () => {
     'DEMO-001': 'DEMO-001 SOUTH',
     'DEMO-002': 'DEMO-002 NORTH',
     'DEMO-003': 'DEMO-003 SOUTH',
-    'DEMO-004': 'DEMO-004 SOUTH',
-    'DEMO-005': 'DEMO-005 SOUTH',
   };
   
   // Initialize with URL param or default
@@ -35,7 +33,7 @@ export const ContainerItemsListWithStats: React.FC = () => {
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [editingRecordId, setEditingRecordId] = useState<number | null>(null);
 
-  const containers = ["DEMO-001 SOUTH", "DEMO-002 NORTH", "DEMO-003 SOUTH", "DEMO-004 SOUTH", "CHARTS", "API CONNECTIONS", "SUPPLIER LIST", "ARRIVALS"];
+  const containers = ["DEMO-001 SOUTH", "DEMO-002 NORTH", "DEMO-003 SOUTH", "CHARTS", "API CONNECTIONS", "SUPPLIER LIST", "ARRIVALS"];
 
   // Handle container change - update URL and state
   const handleContainerChange = (value: string) => {
@@ -56,10 +54,6 @@ export const ContainerItemsListWithStats: React.FC = () => {
       navigate("/container-items/DEMO-002");
     } else if (value === "DEMO-003 SOUTH") {
       navigate("/container-items/DEMO-003");
-    } else if (value === "DEMO-004 SOUTH") {
-      navigate("/container-items/DEMO-004");
-    } else if (value === "DEMO-005 SOUTH") {
-      navigate("/container-items/DEMO-005");
     }
   };
 

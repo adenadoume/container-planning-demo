@@ -79,9 +79,9 @@ export const ApiConnectionsList: React.FC = () => {
   ];
 
   const erpOptions = [
-    { value: "softone", label: "SoftOne ERP", icon: "💼", subtitle: "Complete business management" },
-    { value: "epsilonnet", label: "Epsilon Net", icon: "📊", subtitle: "Advanced accounting & ERP" },
-    { value: "ison", label: "ISON PLATFORM", icon: "🔧", subtitle: "Psychometric Tests - Employee evaluation" },
+    { value: "softone", label: "SoftOne ERP", icon: "💼" },
+    { value: "epsilonnet", label: "Epsilon Net", icon: "📊" },
+    { value: "ison", label: "ISON PLATFORM", icon: "🔧" },
   ];
 
   const dataOptions = [
@@ -446,15 +446,8 @@ export const ApiConnectionsList: React.FC = () => {
                     >
                       {erpOptions.map((option) => (
                         <Option key={option.value} value={option.value}>
-                          <div>
-                            <span style={{ marginRight: "8px" }}>{option.icon}</span>
-                            <span style={{ fontWeight: 600 }}>{option.label}</span>
-                            {option.subtitle && (
-                              <div style={{ fontSize: "12px", color: "#9ca3af", marginTop: "2px", marginLeft: "28px" }}>
-                                {option.subtitle}
-                              </div>
-                            )}
-                          </div>
+                          <span style={{ marginRight: "8px" }}>{option.icon}</span>
+                          <span style={{ fontWeight: 600 }}>{option.label}</span>
                         </Option>
                       ))}
                     </Select>
@@ -671,7 +664,7 @@ export const ApiConnectionsList: React.FC = () => {
             title={
               <span>
                 <RobotOutlined style={{ marginRight: "8px" }} />
-                AI Assistant - Container Planning Agent
+                AI Assistant
               </span>
             }
           >

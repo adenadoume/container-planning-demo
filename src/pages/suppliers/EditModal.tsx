@@ -265,13 +265,6 @@ export const SupplierEditModal: React.FC<EditModalProps> = ({
                 </Form.Item>
 
                 <Form.Item
-                  label={<span style={darkStyles.label}>Province/State</span>}
-                  name="province_state"
-                >
-                  <Input style={darkStyles.input} placeholder="Guangdong" />
-                </Form.Item>
-
-                <Form.Item
                   label={<span style={darkStyles.label}>Address</span>}
                   name="address"
                 >

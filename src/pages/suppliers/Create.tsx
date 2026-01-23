@@ -56,10 +56,6 @@ export const SuppliersCreate: React.FC = () => {
                 <Input placeholder="e.g., China" />
               </Form.Item>
 
-              <Form.Item label="Province/State" name="province_state">
-                <Input placeholder="e.g., Guangdong, Jiangsu" />
-              </Form.Item>
-
               <Form.Item label="Address" name="address">
                 <TextArea
                   rows={3}

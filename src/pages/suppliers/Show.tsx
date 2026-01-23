@@ -79,9 +79,6 @@ export const SuppliersShow: React.FC = () => {
             <Descriptions.Item label="Country/Region">
               <TextField value={record?.country_region || "-"} />
             </Descriptions.Item>
-            <Descriptions.Item label="Province/State">
-              <TextField value={record?.province_state || "-"} />
-            </Descriptions.Item>
             <Descriptions.Item label="Address" span={2}>
               <TextField value={record?.address || "-"} />
             </Descriptions.Item>
