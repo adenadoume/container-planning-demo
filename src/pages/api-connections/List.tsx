@@ -438,7 +438,7 @@ export const ApiConnectionsList: React.FC = () => {
                       Select Platform:
                     </Text>
                     <Select
-                      placeholder="Choose ERP system"
+                      placeholder="Choose API Connection"
                       style={{ width: "100%" }}
                       size="large"
                       value={selectedERP}
